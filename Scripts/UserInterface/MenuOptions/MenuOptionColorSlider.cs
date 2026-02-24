@@ -27,13 +27,6 @@ namespace HealthBars.UserInterface.MenuOptions {
 		public BoxCollider valueCollider;
 		public SpriteRenderer border;
 		public Transform pointer;
-		public float paddingLeft = 0.125f;
-		public float paddingRight = 0.125f;
-		public float paddingTop = 0.125f;
-		public float paddingBottom = 0.125f;
-
-		public float PaddingHorizontal => paddingLeft + paddingRight;
-		public float PaddingVertical => paddingTop + paddingBottom;
 
 		private bool _isActive;
 		private int _currentStep;
@@ -169,7 +162,7 @@ namespace HealthBars.UserInterface.MenuOptions {
 			const float selectedOpacity = 1f;
 			const float unselectedOpacity = 0.65f;
 			
-			pointer.localPosition = RoundToPixelPerfectPosition.RoundPosition(new Vector3(_currentStep / 16f + paddingLeft, pointer.localPosition.y, pointer.localPosition.z));
+			pointer.localPosition = RoundToPixelPerfectPosition.RoundPosition(new Vector3(((_currentStep) / 16f) + (2f / 16f), pointer.localPosition.y, pointer.localPosition.z));
 			
 			valueText.Render();
 			
@@ -199,12 +192,12 @@ namespace HealthBars.UserInterface.MenuOptions {
 			if (valueCollider != null) {
 				var width = Mathf.Abs(valueText.dimensions.width);
 				var height = Mathf.Abs(valueText.dimensions.height);
-				valueCollider.size = new Vector3(width - 1f / 16f, height / 2f + 3f / 16f, valueCollider.size.z);
-				valueCollider.center = new Vector3(valueCollider.size.x / 2f + 1f / 16f, valueCollider.center.y, valueCollider.size.z);
+				valueCollider.size = new Vector3(width - (1f / 16f), (height / 2f) + (3f / 16f), valueCollider.size.z);
+				valueCollider.center = new Vector3((valueCollider.size.x / 2f) + (1f / 16f), valueCollider.center.y, valueCollider.size.z);
 			}
 			
 			if (border != null) {
-				border.size = new Vector2(valueCollider.size.x + PaddingHorizontal, valueCollider.size.y + PaddingVertical);
+				border.size = new Vector2(valueCollider.size.x + (4f / 16f), valueCollider.size.y + (4f / 16f));
 				border.transform.localPosition = new Vector3(valueCollider.center.x, border.transform.localPosition.y, border.transform.localPosition.z);
 			}
 

@@ -10,7 +10,7 @@ namespace HealthBars.ResourceBars {
 		private static readonly HashSet<Type> AlreadyModifiedGraphicalObjects = new();
 
 		public override void Convert(GameObject authoring) {
-			if (IsServer || !authoring.TryGetComponent<IEntityMonoBehaviourData>(out var entityMonoBehaviourData))
+			if (IsServer || Manager.main.currentSceneHandler == null || !authoring.TryGetComponent<IEntityMonoBehaviourData>(out var entityMonoBehaviourData))
 				return;
 			
 			var objectInfo = entityMonoBehaviourData.ObjectInfo;

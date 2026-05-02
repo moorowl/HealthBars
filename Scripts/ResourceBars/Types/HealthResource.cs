@@ -7,7 +7,7 @@ using UnityEngine;
 namespace HealthBars.ResourceBars.Types {
 	public class HealthResource : Resource {
 		private static readonly Color ImmuneColor = new(0.55f, 0.55f, 0.55f, 1f);
-		private const float HideAfterDuration = 0.5f;
+		private const float HideAfterDuration = 0.1f;
 
 		private float _hideTime;
 
@@ -57,7 +57,7 @@ namespace HealthBars.ResourceBars.Types {
 		private static bool ShouldBeHidden(EntityMonoBehaviour entityMono) {
 			if (EntityMonoUtils.IsHiddenInsideWalls(entityMono)) {
 				var tileLookup = Manager.multiMap.GetTileLayerLookup();
-				return tileLookup.GetTopTile(entityMono.WorldPosition.RoundToInt2()).tileType.IsWallTile();
+				return tileLookup.HasTile(entityMono.WorldPosition.RoundToInt2(), TileType.wall);
 			}
 
 			if (EntityUtility.TryGetComponentData<StateInfoCD>(entityMono.entity, entityMono.world, out var stateInfoCD))

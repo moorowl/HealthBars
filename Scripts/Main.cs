@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 
 namespace HealthBars {
 	public class Main : IMod {
-		public const string Version = "1.4";
+		public const string Version = "1.4.1";
 		public const string InternalName = "HealthBars";
 		public const string DisplayName = "Enemy Health Bars";
 		

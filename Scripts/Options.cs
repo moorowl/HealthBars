@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using HealthBars.UserInterface;
+using HealthBars.UserInterface.MenuOptions;
 using HealthBars.Utilities;
 using Newtonsoft.Json;
 using PugMod;
@@ -120,6 +121,9 @@ namespace HealthBars {
 			MenuAdder.OnInit += () => {
 				var menu = MenuAdder.AddMenu((RadicalOptionsMenu) Manager.menu.uiOptionsMenu, 19901, "HealthBars-Options/Header");
 				menu.AddOptionFromPath(Main.AssetBundle, $"Assets/{Main.InternalName}/Prefabs/MenuOptions.prefab");
+			};
+			MenuAdder.OnActivated += _ => {
+				MenuOptionColorSlider.TemporarilyPreventInteraction();
 			};
 			
 			Load();

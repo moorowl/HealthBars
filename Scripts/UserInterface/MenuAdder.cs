@@ -11,6 +11,7 @@ namespace HealthBars.UserInterface {
 	public static class MenuAdder {
 		// Called after MenuManager initializes
 		public static event Action OnInit;
+		public static event Action<RadicalMenu> OnActivated;
 
 		private static readonly Dictionary<RadicalMenu.MenuType, RadicalMenu> MenusByType = new();
 
@@ -64,6 +65,12 @@ namespace HealthBars.UserInterface {
 			[HarmonyPostfix]
 			public static void MenuManager_Init(MenuManager __instance) {
 				OnInit?.Invoke();
+			}
+			
+			[HarmonyPatch(typeof(MenuManager), "ActivateTopMenu")]
+			[HarmonyPostfix]
+			public static void MenuManager_ActivateTopMenu(MenuManager __instance) {
+				OnActivated?.Invoke(__instance.GetTopMenu());
 			}
 
 			[HarmonyPatch(typeof(RadicalMenu), "TypeToMenu")]

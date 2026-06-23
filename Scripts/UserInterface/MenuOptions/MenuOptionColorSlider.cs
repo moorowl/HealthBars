@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace HealthBars.UserInterface.MenuOptions {
 	public abstract class MenuOptionColorSlider : RadicalMenuOption {
-		public static float PreventInteractionUntil;
+		private static float PreventInteractionUntil;
 		private static bool IsInteractionAllowed => Time.unscaledTime >= PreventInteractionUntil;
 		
 		public enum ColorComponent {
@@ -216,6 +216,10 @@ namespace HealthBars.UserInterface.MenuOptions {
 				valueText.SetText(new string(StepChar, numberOfSteps));
 				valueText.style.extraCharSpacing = -2;
 			}
+		}
+
+		public static void TemporarilyPreventInteraction() {
+			PreventInteractionUntil = Time.unscaledTime + 1f;
 		}
 	}
 }

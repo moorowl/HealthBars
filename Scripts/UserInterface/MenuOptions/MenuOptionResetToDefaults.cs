@@ -23,7 +23,7 @@ namespace HealthBars.UserInterface.MenuOptions {
 
 					Options.Instance.SetDefaults();
 
-					MenuOptionColorSlider.PreventInteractionUntil = Time.unscaledTime + 1f;
+					MenuOptionColorSlider.TemporarilyPreventInteraction();
 				},
 				options: new List<string> { "cancelDialogue", "yes" },
 				minWidth: 10f,

@@ -19,8 +19,9 @@ namespace HealthBars.ResourceBars.Types {
 
 			if ((!Options.Instance.ShowOtherPlayerHealth && !player.isLocal) || (!Options.Instance.ShowLocalPlayerHealth && player.isLocal))
 				return;
-			
-			if (!player.isLocal && !player.IsPlayersOfSamePvPTeam(Manager.main.player))
+
+			// Only show other player's health if we're on the same team
+			if (player.pvpMode && !player.isLocal && !player.IsPlayersOfSamePvPTeam(Manager.main.player))
 				return;
 
 			if (!EntityMonoUtils.TryGetNormalizedMana(entityMono, out var mana))

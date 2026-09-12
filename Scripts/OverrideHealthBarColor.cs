@@ -9,6 +9,8 @@ namespace HealthBars {
 		[HarmonyPatch(typeof(HealthBar), "UpdateHealthBar")]
 		[HarmonyPrefix]
 		public static void HealthBar_UpdateHealthBar(HealthBar __instance, float value, int protectiveArmorValue, int maxProtectiveArmorValue) {
+			// Only override color if it's the default red
+			// In vanilla this is to avoid overriding SAHABAR's purple health bars at low health
 			if (IsHealthColorDefault(__instance.healthColor))
 				__instance.healthColor = Options.Instance.ColorHealth.Rgba;
 

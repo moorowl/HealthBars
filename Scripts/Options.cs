@@ -39,14 +39,6 @@ namespace HealthBars {
 			}
 		}
 		
-		public bool ShowMinionDuration {
-			get => _data.ShowMinionDuration;
-			set {
-				_data.ShowMinionDuration = value;
-				_isDirty = true;
-			}
-		}
-		
 		public bool ShowOreBoulderProgress {
 			get => _data.ShowOreBoulderProgress;
 			set {
@@ -180,7 +172,6 @@ namespace HealthBars {
 			public bool ShowCreatureHealth { get; set; } = true;
 			public bool ShowOtherPlayerHealth { get; set; } = true;
 			public bool ShowLocalPlayerHealth { get; set; }
-			public bool ShowMinionDuration { get; set; }
 			public bool ShowOreBoulderProgress { get; set; }
 			public bool DisplayOverObjects { get; set; } = true;
 			public bool EmphasizeLargeHits { get; set; }

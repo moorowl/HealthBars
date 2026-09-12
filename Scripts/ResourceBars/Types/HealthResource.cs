@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace HealthBars.ResourceBars.Types {
 	public class HealthResource : Resource {
-		private static readonly Color ImmuneColor = new(0.55f, 0.55f, 0.55f, 1f);
+		public static readonly Color ImmuneColor = new(0.55f, 0.55f, 0.55f, 1f);
 		private const float HideAfterDuration = 0.1f;
 
 		private float _hideTime;

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using PlayerState;
+using PugMod;
 using Unity.Mathematics;
+using Unity.NetCode;
 using UnityEngine;
 
 namespace HealthBars.Utilities {
@@ -104,8 +106,13 @@ namespace HealthBars.Utilities {
 		}
 
 		public static bool IsImmuneToDamage(EntityMonoBehaviour entityMono) {
-			return (EntityUtility.TryGetComponentData<ImmuneToDamageCD>(entityMono.entity, entityMono.world, out var immuneToDamageCD) && immuneToDamageCD.Value == ImmuneToDamageState.Immune)
-			       || TryGetNormalizedShield(entityMono, out var shield) && shield > 0f;
+			if (EntityUtility.TryGetComponentData<ImmuneToDamageCD>(entityMono.entity, entityMono.world, out var immuneToDamageCD) && immuneToDamageCD.Value == ImmuneToDamageState.Immune)
+				return true;
+
+			if (TryGetNormalizedShield(entityMono, out var shield) && shield > 0f)
+				return true;
+
+			return false;
 		}
 	}
 }

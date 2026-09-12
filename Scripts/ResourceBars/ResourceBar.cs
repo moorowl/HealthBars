@@ -7,7 +7,7 @@ namespace HealthBars.ResourceBars {
 	public class ResourceBar : MonoBehaviour {
 		private const float FillOpacityMultiplier = 0.9f;
 		private const float BackgroundOpacityMultiplier = 0.4f;
-		private const float LargeHitFillOpacityMultiplier = 0f;
+		private const float LargeHitFillOpacityMultiplier = 0.25f;
 
 		public GameObject barRoot;
 		public GameObject barMaskPivot;
@@ -26,6 +26,7 @@ namespace HealthBars.ResourceBars {
 		private Color _color;
 		private float _largeHitProgress;
 		private float _timeLastDamaged;
+		private float _lastTargetProgress;
 
 		public bool Visible => barRoot.activeSelf;
 		public bool ForceVisible { get; set; }
@@ -55,7 +56,7 @@ namespace HealthBars.ResourceBars {
 			if (math.distance(_progress, progress) < 0.05f)
 				_progress = progress;
 			
-			if (!Mathf.Approximately(progress, _progress))
+			if (!Mathf.Approximately(progress, _lastTargetProgress))
 				_timeLastDamaged = Time.time;
 
 			if (Options.Instance.EmphasizeLargeHits && _resource.LerpLargeHits && Time.time >= _timeLastDamaged + _resource.LargeHitHoldTime && progress < _largeHitProgress)
@@ -66,8 +67,9 @@ namespace HealthBars.ResourceBars {
 			// Update opacity
 			_opacity = math.lerp(_opacity, visible || ForceVisible ? 1f : 0f, _resource.OpacityLerpSpeed * Time.deltaTime);
 
-			_color = color;
+			_color = Color.Lerp(_color, color, _resource.DamageLerpSpeed * Time.deltaTime);
 			_lastEntity = entityMono.entity;
+			_lastTargetProgress = progress;
 		}
 		
 		public void UpdateVisuals(EntityMonoBehaviour entityMono) {

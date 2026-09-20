@@ -13,7 +13,7 @@ namespace HealthBars.Utilities {
 			{ ObjectID.SmallTentacle, new Vector3(0f, 0f, -0.275f) },
 			{ ObjectID.MoldTentacle, new Vector3(0f, 0f, -0.45f) },
 			{ ObjectID.BombScarab, new Vector3(0f, 0f, 0.1f) },
-			{ ObjectID.Wingling, new Vector3(0f, 0f, 0.45f) },
+			{ ObjectID.Wingling, new Vector3(1f / 16f, 0f, 0.45f) },
 			{ ObjectID.GoldenBombScarab, new Vector3(0f, 0f, 0.1f) },
 			{ ObjectID.LavaButterfly, new Vector3(0f, 0f, 0.45f) },
 			{ ObjectID.Larva, new Vector3(0f, 0f, -0.3f) },
